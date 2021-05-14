@@ -63,9 +63,9 @@ class Drink:
 class Coffee(Drink):
     pass
 
-수민이꺼 = Coffee('초코버블티', 3300)
-수민이꺼.order()
-print(수민이꺼)
+# 수민이꺼 = Coffee('초코버블티', 3300)
+# 수민이꺼.order()
+# print(수민이꺼)
 
 class Bubbletea(Drink):
     _PEALRS = ('타피오카', '코코', '젤리', '알로에')
@@ -90,7 +90,47 @@ class Bubbletea(Drink):
 
 class Order:
     def __init__(self):
-        pass
+        self.menu = []
+        self.init_menu()
+        self.order_menu = []
 
-    def __str__(self):
-        pass
+    def init_menu(self):
+        drink1 = Coffee('아메리카노', 1800)
+        drink2 = Bubbletea('하동녹차오레오', 3300)
+        drink3 = Bubbletea('딸기요거트', 3400)
+        self.menu.append(drink1)
+        self.menu.append(drink2)
+        self.menu.append(drink3)
+
+    def show_menu(self):
+        for index, drink in enumerate(self.menu):
+            print(f'{index + 1}: {drink.name}\t{drink.price}원')
+
+    def order_drink(self):
+        while True: #반복 시작
+            self.show_menu()  # 메뉴 보여주자
+            drink = input('메뉴를 선택하세요: ') #메뉴 선택하자
+            drink = int(drink) - 1
+            new_drink = self.menu[drink]
+            new_drink.order()   #  옵션 선택하자
+            self.order_menu.append(new_drink)   #  self.order_menu에 추가하자
+            is_add = input('더 주문하실까요?(n: 끝): ')#  더 주문?
+            if is_add == 'n':   #반복 끝
+                break
+        print(self) #총가격 계산하고, 주문내역 보여주자    자기의 __str__() 호출
+    def sum_price(self):
+        total_price = 0
+        for drink in self.order_menu:   #self.order_menu에서 하나씩 꺼내자
+            total_price += drink.price  #음료수.price의 합계를 구하자
+        return total_price
+
+    def __str__(self):      #주문 내역
+        s = '-' * 20 + '주문 내역' + '-' * 20 + '\n'   #주문내역입니다. 제목 보여주자
+        for drink in self.order_menu:   #self.order_menu에 있는 음료수 목록 보여주자
+            s += f'{drink}\n'   #str(drink)
+        s += f'주문한 음료수 개수: {len(self.order_menu)}개\n'
+        s += f'총 가격: {self.sum_price()}원'   #총가격 보여주자
+        return s
+
+order = Order()
+order.order_drink()
