@@ -21,7 +21,7 @@ class Drink:
             cup = int(cup)
             self.cup = cup - 1  # 컵 self에 넣자
 
-        if self.cup == 1:       #점보면, +500원
+        if self.cup == 1:  # 점보면, +500원
             self.price += 500
 
     def set_ice(self):
@@ -55,14 +55,34 @@ class Coffee(Drink):
 
 class Bubbletea(Drink):
     _PEARLS = ('타피오카', '화이트', '알로에', '젤리')
+
     def __init__(self, name, price):
-        super().__init__(name, price)        #부모초기화 호출
-        self.pearl = 0       #'타피오카'
+        super().__init__(name, price)  # 부모초기화 호출
+        self.pearl = 0  # '타피오카'
+
+    def set_pearl(self):
+        for index, pearl in enumerate(Bubbletea._PEARLS):  # 펄 종류 보여주자
+            print(f'{index + 1}: {pearl}')
+        pearl = input('펄을 골라주세요: ')  # 펄 선택하자
+        self.pearl = 0 if pearl == '' else int(pearl) - 1  # self.pearl에 넣자
+
+    def order(self):
+        super().order()  # 부모 클래스의 order() 호출하자
+        self.set_pearl()  # set_pearl() 호출하자
+
     def __str__(self):
-        pass
+        result = super().__str__()  # 부모클래스의 __str__()(이름, 가격, 컵사이즈, 얼음량, 당도), 펄
+        return result + f'\t펄종류: {Bubbletea._PEARLS[self.pearl]}'
 
 
 
-사랑이꺼 = Coffee('카페모카', 2500)
-사랑이꺼.order()
-print(사랑이꺼)
+class Order:
+    pass
+
+
+# 사랑이꺼 = Coffee('카페모카', 2500)
+# 사랑이꺼.order()
+# print(사랑이꺼)
+하람이꺼 = Bubbletea('오레오 쉐이크', 3900)
+하람이꺼.order()
+print(하람이꺼)
