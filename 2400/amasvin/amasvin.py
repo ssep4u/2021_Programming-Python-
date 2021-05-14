@@ -64,7 +64,11 @@ class Bubbletea(Drink):
         for index, pearl in enumerate(Bubbletea._PEARLS):  # 펄 종류 보여주자
             print(f'{index + 1}: {pearl}')
         pearl = input('펄을 골라주세요: ')  # 펄 선택하자
-        self.pearl = 0 if pearl == '' else int(pearl) - 1  # self.pearl에 넣자
+        # self.pearl = 0 if pearl == '' else int(pearl) - 1  # self.pearl에 넣자
+        if pearl == '':
+            self.pearl = 0
+        else:
+            self.pearl = int(pearl) - 1
 
     def order(self):
         super().order()  # 부모 클래스의 order() 호출하자
@@ -77,12 +81,49 @@ class Bubbletea(Drink):
 
 
 class Order:
-    pass
+    def __init__(self):
+        self.menu = []  #self.menu 매장에 있는 음료수 전체
+        self.init_menu() #init_menu()
+        self.order_menu = []    #self.order_menu 내가 고른 메뉴들
+
+    def init_menu(self):
+        사랑이꺼 = Coffee('카페모카', 2500)
+        하람이꺼 = Bubbletea('오레오 쉐이크', 3900)
+        에스더꺼 = Bubbletea('타로 밀크티', 3300)
+        self.menu.append(사랑이꺼)
+        self.menu.append(하람이꺼)
+        self.menu.append(에스더꺼)
+
+    def show_menu(self):
+        for index, drink in enumerate(self.menu):
+            print(f'{index + 1}: {drink.name}\t{drink.price}원')
+
+    def sum_price(self):
+        pass
+
+    def order_drink(self):
+        pass
+        #반복
+            #메뉴 보여주자
+            #메뉴 선택하자
+            #옵션 선택하자
+            #self.order_menu에 추가하자
+            #더 주문?
+        #주문내역 보여주자
+    
+    def __str__(self):
+        pass
+        #주문내역 제목보여주자
+        #주문한 음료수들 목록 보여주자
+        #총 합계 가격 보여주자
 
 
 # 사랑이꺼 = Coffee('카페모카', 2500)
 # 사랑이꺼.order()
 # print(사랑이꺼)
-하람이꺼 = Bubbletea('오레오 쉐이크', 3900)
-하람이꺼.order()
-print(하람이꺼)
+# 하람이꺼 = Bubbletea('오레오 쉐이크', 3900)
+# 하람이꺼.order()
+# print(하람이꺼)
+order = Order()
+order.show_menu()
+
