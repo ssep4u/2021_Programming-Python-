@@ -70,8 +70,8 @@ print(수민이꺼)
 class Bubbletea(Drink):
     _PEALRS = ('타피오카', '코코', '젤리', '알로에')
 
-    def __init__(self, name, pearl):
-        super().__init__(name, pearl)
+    def __init__(self, name, price):
+        super().__init__(name, price)
         self.pearl = 0       #'타피오카', '코코', '젤리', '알로에'
 
     def set_pearl(self):
