@@ -38,13 +38,13 @@ class Drink:
         self.set_sugar()
 
     def set_sugar(self):
-        for index, sugar in enumerate(Drink._SUGARS):
+        for index, sugar in enumerate(Drink._SUGARS):   #당도 선택사항 보여주자
             print(f'{index + 1}: {sugar}')
-        sugar = input('당도를 선택하세요: ')
+        sugar = input('당도를 선택하세요: ')               #당도 선택하자
         if sugar == '0':    #이전 질문으로...
             self.set_ice()
             return
-        self.sugar = 2 if sugar == '' else int(sugar) - 1
+        self.sugar = 2 if sugar == '' else int(sugar) - 1 #self.sugar에 넣자
 
     def order(self):
         self.set_cup()
@@ -67,12 +67,25 @@ class Coffee(Drink):
 수민이꺼.order()
 print(수민이꺼)
 
-class Bubbletea:
-    def __init__(self):
-        pass
+class Bubbletea(Drink):
+    _PEALRS = ('타피오카', '코코', '젤리', '알로에')
+
+    def __init__(self, name, pearl):
+        super().__init__(name, pearl)
+        self.pearl = 0       #'타피오카', '코코', '젤리', '알로에'
+
+    def set_pearl(self):
+        for index, pearl in enumerate(Bubbletea._PEALRS):  #펄 종류 보여주자
+            print(f'{index + 1}: {pearl}')
+        pearl = input('펄을 선택하세요: ')#펄 선택하자
+        self.pearl = 0 if pearl == '' else int(pearl) - 1   #self.pearl에 넣자
 
     def __str__(self):
-        pass
+        return super().__str__() + f'\t펄: {Bubbletea._PEALRS[self.pearl]}'
+
+    def order(self):
+        super().order()
+        self.set_pearl()
 
 
 class Order:
