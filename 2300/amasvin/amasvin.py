@@ -1,3 +1,6 @@
+from copy import copy
+
+
 class Drink:
     _CUPS = ('레귤러', '점보')
     _ICES = ('0%', '50%', '100%', '150%')
@@ -90,9 +93,9 @@ class Bubbletea(Drink):
 
 class Order:
     def __init__(self):
-        self.menu = []
+        self.menu = []      #매장 내 메뉴 전체
         self.init_menu()
-        self.order_menu = []
+        self.order_menu = []   #내가 주문한 메뉴
 
     def init_menu(self):
         drink1 = Coffee('아메리카노', 1800)
@@ -111,7 +114,7 @@ class Order:
             self.show_menu()  # 메뉴 보여주자
             drink = input('메뉴를 선택하세요: ') #메뉴 선택하자
             drink = int(drink) - 1
-            new_drink = self.menu[drink]
+            new_drink = copy(self.menu[drink])
             new_drink.order()   #  옵션 선택하자
             self.order_menu.append(new_drink)   #  self.order_menu에 추가하자
             is_add = input('더 주문하실까요?(n: 끝): ')#  더 주문?
