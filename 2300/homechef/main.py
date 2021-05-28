@@ -20,8 +20,8 @@ def main():
             # 레시피 추가
             recipebook_203.add_recipe()
         elif menu == '3':
-            return
             # 재료 검색
+            recipebook_203.search_whatin()
         elif menu == '4':
             # 레시피 모음
             recipebook_203.show_all_recipe()

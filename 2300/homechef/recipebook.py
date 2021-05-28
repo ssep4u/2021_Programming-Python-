@@ -3,6 +3,7 @@ from recipe import Recipe
 class Recipebook:
     def __init__(self):
         self.recipe_list = []
+        self.food_court()
 
     def add_recipe(self):
         # 추가할 레시피 이름을 입력받자
@@ -50,7 +51,37 @@ class Recipebook:
             else:
                 return
 
+    def search_whatin(self):
+        # (재료세트)빈 세트 생성
+        whatin_set = set()
+        for recipe in self.recipe_list:
+            for whatin in recipe.whatin:
+                whatin_set.add(whatin)     # {'김치', '두부', '감자'}.add('두부') -> {'두부', '감자, '김치'}
+        # 모든 재료 다 보여주자
+        print('다음 재료를 사용해보세요! ')
+        for index, whatin in enumerate(whatin_set):
+            print(f'{index+1}. {whatin}')
+        # 재료 중에 사용할 재료 고르자
+        num = int(input('>> 사용할 재료 번호를 입력하세요: '))
+        use_whatin = list(whatin_set)[num-1]
+        # 고른 재료가 포함되는 레시피를 다 보여주자
+        for recipe in self.recipe_list:
+            if use_whatin in recipe.whatin:     # 딕셔너리는 키값으로 찾는다
+                print(recipe)
 
+    def food_court(self):
+        지원이 = Recipe('케이크')
+        지원이.quantity = 1
+        지원이.link = 'youtube.com'
+        지원이.whatin = {'밀가루': '500', '계란': '100', '생크림': '200', '딸기': '300'}
+        지원이.info = '맛있게 만드세요!'
+        지원이.time = 60
+        self.recipe_list.append(지원이)
+        서연이 = Recipe('삼겹살김치볶음밥')
+        서연이.quantity = 4
+        서연이.link = ''
+        서연이.whatin = {'삼겹살':'500', '김치':'100', '밥': '400'}
+        self.recipe_list.append(서연이)
 
     def __str__(self):
         pass
