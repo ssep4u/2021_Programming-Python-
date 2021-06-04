@@ -3,6 +3,7 @@ from recipe import Recipe
 class RecipeBook:
     def __init__(self):
         self.recipe_list = []
+        self.init_recipe()
 
     def add_recipe(self):
         # 추가할 레시피 이름 입력받자
@@ -49,12 +50,40 @@ class RecipeBook:
             else:
                 return
 
+    # 재료로 (해당되는) 레시피 찾기
+    def search_ingredient(self):
+        # 빈 셋(set) 생성 -> 재료를 중복 제거해서 담은 셋(set)
+        all_ingredient = set()
+        # 레시피북에 있는 레시피의 재료들 셋에 넣자
+        for recipe in self.recipe_list:
+            for ingredient in recipe.ingredient:
+                all_ingredient.add(ingredient)
+        # 모든 재료들 보여주자
+        for index, ingredient in enumerate(all_ingredient):
+            print(f'{index+1}. {ingredient}')
+        # 찾을 재료를 검색하자(입력받자)
+        search_num = int(input('>> 사용할 재료를 입력하세요: '))
+        search_ingredient = list(all_ingredient)[search_num-1]
+        # 레시피 리스트의 레시피 -> 레시피의 재료를 살펴보자
+        for recipe in self.recipe_list:
+            # 입력한 재료가 포함되면
+            if search_ingredient in recipe.ingredient:
+            # 해당 레시피 모두 보여주자
+                print(recipe)
 
+    def init_recipe(self):
+        떡볶이 = Recipe('떡볶이')
+        떡볶이.people = 2
+        떡볶이.video = 'youtube.com'
+        떡볶이.ingredient = {'물': '100', '떡':'200', '고추장':'100', '어묵':'100', '양파':'300'}
+        self.recipe_list.append(떡볶이)
+        카레 = Recipe('카레')
+        카레.ingredient = {'카레가루': '50', '감자': '200', '당근':'100'}
+        self.recipe_list.append(카레)
+        파스타 = Recipe('파스타')
+        파스타.contents = '맛있게 만드세요!'
+        파스타.ingredient = {'면': '100', '토마토소스': '200'}
+        self.recipe_list.append(파스타)
 
-
-
-
-
-
-    def __str__(self):
-        pass
+    # def __str__(self):
+    #     pass
