@@ -6,7 +6,7 @@ def 효진친구():
 
 date = '2021.8.27.'
 
-if __name__ == '__main__':
+if __name__ == '__main__':      #main
     나라친구()
     효진친구()
     print(date)
