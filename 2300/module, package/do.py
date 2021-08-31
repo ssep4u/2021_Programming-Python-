@@ -27,11 +27,3 @@ from travel import *
 ilsan.이지()
 gp = gangreung.GangreungPackage()
 print(gp)
-
-
-
-
-
-
-
-
