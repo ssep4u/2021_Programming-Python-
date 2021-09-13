@@ -14,7 +14,9 @@ while True:
         print('숫자를 입력하세요')
         continue
     if len(guess) != len(answer):   #3
-        raise InvalidLengthError('정답의 길이와 다른 것을 입력했네요')
+        # raise InvalidLengthError('정답의 길이와 다른 것을 입력했네요')
+        print(f'정답의 길이와 다른 것을 입력했네요. {len(answer)} 문자')
+        continue
 
 #  strike, ball 판정하자
     strike, ball = check(guess, answer)
