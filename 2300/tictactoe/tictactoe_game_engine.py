@@ -21,7 +21,11 @@ class TictactoeGameEngine:
 
     def change_turn(self):  #모두의 틱택토 설
         #self.turn 'X'면 'O', 'O'면 'X'로 바꾸자
-        pass
+        # if self.turn == 'X':
+        #     self.turn = 'O'
+        # else:
+        #     self.turn = 'X'
+        self.turn = 'O' if self.turn == 'X' else 'X'
 
 if __name__ == '__main__':
     game_engine = TictactoeGameEngine()
