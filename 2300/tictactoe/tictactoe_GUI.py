@@ -43,8 +43,24 @@ class TictactoeGUI:
         pass
 
     def coordinate_to_position(self, x, y):
-        print(x, y)
-        return 2, 2
+        # if 0 <= x < 100:
+        #     col = 1
+        # elif 100 <= x < 200:
+        #     col = 2
+        # elif 200 <= x < 300:
+        #     col = 3
+        #
+        # if 0 <= y < 100:
+        #     row = 1
+        # elif 100 <= y < 200:
+        #     row = 2
+        # elif 200 <= y < 300:
+        #     row = 3
+
+        row = y // 100 + 1
+        col = x // 100 + 1
+
+        return row, col
 
 
 if __name__ == '__main__':
