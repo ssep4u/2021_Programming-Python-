@@ -34,7 +34,8 @@ class TictactoeGUI:
         #set row, col
         self.game_engine.set(row, col)
         #show board
-        self.game_engine.show_board()
+        # self.game_engine.show_board()
+        self.draw_board()
         #set winner
         winner = self.game_engine.set_winner()
         #승자가 있거나 무승부이면, 게임오버, 결과 표시하자
@@ -48,7 +49,20 @@ class TictactoeGUI:
         self.game_engine.change_turn()
 
     def draw_board(self):
-        pass
+        TILE_SIZE = self.CANVAS_SIZE // self.game_engine.SIZE   #300//3 = 100
+        x = 0
+        y = 0
+
+        for i, v in enumerate(self.game_engine.board):
+            if v == '.':
+                pass
+            else:   #elif v == 'X' or v == 'O':
+                self.canvas.create_image(x, y, anchor='nw', image=self.images[v])
+            x += TILE_SIZE
+
+            if i % self.game_engine.SIZE == self.game_engine.SIZE - 1:
+                x = 0
+                y += TILE_SIZE
 
     def coordinate_to_position(self, x, y):
         #row
