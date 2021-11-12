@@ -78,7 +78,7 @@ class TictactoeGUI:
         # elif 200 <= y < 300:
         #     row = 3
 
-        row = y // 100 + 1
+        row = y // (self.CANVAS_SIZE // self.game_engine.SIZE) + 1
         col = x // 100 + 1
 
         return row, col
